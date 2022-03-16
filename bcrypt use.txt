@@ -1,0 +1,815 @@
+install bcryptjs
+require the bcryptjs
+make a function secredPassword using 
+function express
+then make it async 
+pass the parameter password to it 
+then call the function and 
+put kshitij@123=password as you 
+
+bcryptjs.has  returns a promise 
+put this in a const 
+
+then do console.
+
+output for 
+kshitij@123
+$2a$10$QRjsDgtDDRRhqRgupeTvg.NejKX3vKjnYUQIUlx4DBbIa9gficuEG
+
+
+
+type same for the matching purpose
+
+1. we type password 
+2. in database or backend 
+bcryptjs will convert this 
+in database.
+3. then when we login this value will be checked or converted value will be checked.
+
+if we consoled it 
+this will print true or false.
+if password matched = will print true
+if password not matched = will print false
+
+
+
+
+
+
+***********bcryptjs use*************
+
+in registers
+ schema.pre("")
+pre = takes 2 arguments
+
+what is next = 
+its a concept of middleware
+pre means pehle
+next()= next means save method will call.
+this.password means 
+we can select the password
+
+next keyword is very imp 
+
+after the next wala code will run 
+if we didn't write next then it will k
+keep printing the value
+
+
+password ko bcryptjs ke help se has kr diya.
+
+rounds = 10 
+jayda round = this will take more time
+
+hash will return a promise
+
+so have to async it
+
+
+
+
+then we put if condition mein data.
+kyuni agar password modify or update ha tou ?
+agar password wala field modified ho raha hai tou hi hum password ko has krenge.
+means agar koi password ke field 1st time password enter kr raha hai tabhi password ko hash krengge 
+
+
+
+now fill the form then you will get empty data.
+ why ?
+
+status(400)
+
+require bcryptjs again
+then comment out the const passwordHash
+
+
+now after register it will redirect to 
+home page
+
+the current password is amars
+the current password is $2a$10$vOkxD1FLW2FHiWKx.H5SduMUZv//YBtdOi6jKfy4PLazExuhFVBYK
+
+also check on mongodb
+
+this is what have printed
+
+so this could not be regain again
+
+
+
+But there is a problem 
+confirmpassword is still showing 
+our password
+
+confirmpassword = both password same he ke nahi ?
+
+once both same = then we dont need confirm password.
+
+
+so we will write 
+this.confirmpassword = undefined;
+
+
+now again register the form 
+and then check the data in mongodb 
+the confirmpassword field will be 
+deleted successfully
+
+
+
+
+
+
+///////// login bcryptJS /////////
+
+Recap =
+folder section .
+in app.js =
+user wants to login = post method use YBtdOi6jKfy4PLazExuhFVBYK
+
+
+most imp = user type submit then 
+its type = submit 
+then it will go to top 
+form action =/login method = "POST"
+
+then using post method we define this root 
+then check user ne password sahi enter kiya hai k nahi
+
+
+post = login route define
+async function 
+then req and res obj
+
+req.body.email se password email mila
+findOne use kiya 
+
+user ne joh email register mein put ki woh actual main valid hai k nahi
+
+if exist = then condition 
+else (invalid login details)
+
+
+
+
+
+
+we add
+isMatch then bcrypt ka compare use kiya
+it has 2 parameters
+
+
+now remove if() madhla part,
+and put 
+ismatch there
+bcoz bycrpt vr aapn kaam sopvly
+
+then await use kel bycrpt chya adi compare function kde
+
+then login kel 
+tr direct home vr redirect
+
+
+
+
+
+
+
+////// jwt auth ////////
+
+json web token 
+ 
+amazon website 
+add to cart kiya
+hmne login nhi kiya hai 
+aur cart mein add kiya 
+aur amazon band kiya
+
+then again open kiya amazon 
+amazon ne login nahi puccha 
+then carts pe gaya 
+tou amazon will show u carts list
+amazon product 
+
+then how amazon knows this ?
+so whats the magic in browser ?
+
+so browser ka data is stored in cookies
+cookies mein data stored hai..
+
+go to settings 
+site setting mein 
+cookies 
+see all cookies 
+then search amazon 
+then it will show details 
+
+like cook204
+
+
+created dikhayega
+date rahega
+
+
+so amazon ko kaise pata hota hai 
+iss user ne hi add to cart kiya tha 
+
+
+
+browser and server knows our data history 
+hum unke website pe kya kr rhe the
+
+
+so user ko authenticate krte hai hum
+using jwt json web token
+
+token is attached with the cookies
+
+
+jwt = to authenticate the user
+
+how ?
+whenever we request anything on https 
+
+that time server provide us a unique token 
+with help jwt
+
+aur yeh ID us client ke pass rehta hai..
+
+so whenever user request krega server ko then
+or page ke liye request krega 
+so uske sath ye token rahega
+
+and server bata deta hai this is
+genuine user
+
+
+
+
+
+
+login and registration part from app.js 
+humlog comment krenge 
+
+const jwt = require krna
+
+then createToken() function likha
+
+and call it 
+woh humlogo ko fat arrow hai function 
+aur async hai
+
+jwt.sign function ({},)
+isme 2 arguments = 1 object and 2nd one is string.
+
+kyunki id unique rehta hai 
+
+paste the mongodb id data
+and secretkey string
+
+
+secretkey should be atleast 32 
+type anything and then 
+make it await 
+put in const token
+and then log it 
+
+it will print data like this
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjJjN2UyZTk5NjczMmU2OTZmOGZmNjQiLCJpYXQiOjE2NDc0MzU0NjZ9.36Zf_PuWW7gg3GVOQ00I0RTD--epdASX9gYmMpbCTSo
+
+
+you have to paste in 
+jwt official website box
+
+
+isme 2 dot hai usme 3 parts separate kiya hai
+
+1st part represents = header (algorithm)
+
+2nd part represents = body data
+
+3rd part represents = kab use hua like date and time
+
+but data nahi dikh raha 
+nahi dikhana chahiye actually
+
+
+token generate hua hai
+yeh data user ke pass rehta hai 
+isse kehte hai stateless
+
+now verify krna hai .
+
+server doesnt know anything abt user
+
+but jb mujhe cart check krna hai tb server 
+authenticate krta hai
+
+particular toke ko verify krta hai
+
+how ?
+
+
+token generate kiya 
+then 
+jwt.verify(token,secretOrPublicKey,[callbacks])
+
+
+token = generate kiya hai woh
+and then, 2nd para = secretkey 
+idhr verfication hai
+
+jb user request krta hai and user ne jab 
+token pass kiya hai 
+
+so yeh wohi token hai kya user ka ? 
+means yeh user ka token hi hai kya ?
+
+and then we will get the id 
+{ _id: '622c7e2e996732e696f8ff64', iat: 1647436100 }
+
+
+yeh token mein kuch bhi change kiya then invalid token ayega jwt pe 
+
+or error aayega
+
+jwt.verify wale process ko await krna hai 
+aur usko ek variable mein dalna hai 
+aur console krna hai
+
+isme hum expiration add kr skte hai related 
+to banks
+
+
+
+uske liye 
+expiresIn;"2 sec"
+
+2 sec ke baad woh token accept nahi krega
+
+
+this line will provide this
+{ _id: '622c7e2e996732e696f8ff64', iat: 1647436571, exp: 1647436576 }
+
+exp cha number
+  
+  
+  Third parameter is very important
+  
+  const token = await jwt.sign({_id:"622c7e2e996732e696f8ff64"},"djkbfkfgjejweerjejwerererjdjdjds",
+   {expiresIn:"5 secs"})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ****** JWT PROJECT ************************
+
+
+What is middleware ?
+
+click on register .
+go to top
+then route honar
+and it will go to /register 
+and udhr method hoga method="POST"
+name attribute se hum data get kr rahe the
+
+in validation = app.js mein
+firstname chahiye tou
+firstname : req.body.firstname, 
+
+like wise sbka kr rhe the
+
+so what is middleware
+
+
+
+
+example = exam ka
+
+aapke liye 2 kaam the 
+
+1st kaam = aapne padhai ki 
+then pen pencil hall ticket bag mein rakha
+
+
+2nd kaam then collge aaye aur udhr paper likha
+pr 2nd part ko entry kaise mila ? 
+
+ek supervisor apna hallticket check krega 
+hallticket hoga tou exam de paoge otherwise 
+exam nahi dene denge 
+they will check exam dene wala banda same hai na 
+
+so woh hall ticket check krne wale ko means supervisor ko 
+MIDDLEWARE kehte hai
+
+
+
+
+
+so registration mein
+
+1st kaam, user ne form pe joh bhi likha ho
+wo data get krna   
+2nd kaam uske baad woh data database mein store krna 
+ 
+iske beech joh kaam hoga woh middleware krega
+
+woh dono ke beech token generate krenge
+
+
+
+
+In earlier models. register.js 
+mein 
+
+humne same kiya tha.. 
+1st kaam data ko get krna 
+2nd kaam data ko .save() krna
+
+iske beech mein hum bcrypt ke through hash kr rahe the 
+
+so woh hmara middleware tha 
+
+so wer going to make one function
+
+
+
+
+in app.js 
+we will write 
+
+take registerEmployee from above 
+then .generatAuthToken();
+we write this function
+
+then we will go to register 
+there we have to copy the schema
+
+
+there we have to copy the schema 
+schema.methods
+employeeSchema.methods
+
+methods ko tabhi call krte hai jb hum kisi bhi instance pe kaam krte hai
+
+
+
+
+require jwt in register.js
+
+write jwt.sign({_id},secretkey,exprity)
+pass this in const token
+
+we are not passing expiry here bt we have seen this 
+in the previous session
+then console it
+then in catch there is an error parameter
+then res.send(""+error)
+same have to console 
+
+
+then run the program
+
+error 
+
+then got to knwo have to add this above the token 
+
+console.log("the success part" + registerEmployee);
+
+then this will print 
+means after registration it will print 
+
+
+connection successful
+the success part{
+  firstname: 'prayag',
+  lastname: 'marchande',
+  email: 'prayagm@gmail.com',
+  gender: 'male',
+  phone: '1231231212',
+  age: '34',
+  password: 'prayag',
+  confirmpassword: 'prayag',
+  _id: new ObjectId("6231ec9eac1f936a3a1e07d6")
+}
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMxZWM5ZWFjMWY5MzZhM2ExZTA3ZDYiLCJpYXQiOjE2NDc0MzkwMDZ9.RZAe8yeZ8TuEEKyrP6ssYH8ebpgYCoEQ9VIh6gB9FLE
+the current password is prayag
+the current password is $2a$10$CQJqRYNqB8vuR..BRA7RIuaKpDS60HbRhPr8PhURfaDR2bqoNueLq
+
+
+
+
+also have to include the 
+log("token part"+ token)
+
+
+
+
+
+
+
+now it is showing this
+
+server connected at 3000
+connection successful
+the success part{
+  firstname: 'prayag ',
+  lastname: 'marchande',
+  email: 'prayagm@gmail.com',
+  gender: 'male',
+  phone: '2362362323',
+  age: '23',
+  password: 'prayag',
+  confirmpassword: 'prayag',
+  _id: new ObjectId("6231ed979bbe6babfbe8ed51")
+}
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMxZWQ5NzliYmU2YmFiZmJlOGVkNTEiLCJpYXQiOjE2NDc0MzkyNTV9.vkwtjkJwmyKHXAjTSJD2mHdM7wW_I4isXsQxxK1G8SA
+the token partundefined
+the current password is prayag
+the current password is $2a$10$dubQn6gYd0W4JpUR6FjdDOsNhOEEvZ8.Ee1mlQrSuVqq8WtW1HGLK
+
+
+
+
+
+
+for checking the id  
+we will console in try method
+console.log(this._id);
+then below that there is token 
+
+this have to write in register.js 
+
+
+
+now it is working still 
+
+in schemas we have to write 
+token 
+
+tokens:[{
+        token:{
+            type:String,
+            required:true
+        }
+    }]
+
+]
+
+
+then again in try method 
+have to colsole the this.token
+
+
+
+2 token ke values ko concat krna 
+if both are same then we can write 
+{token}
+
+but for sake of simplicity we are
+keeping it simple
+
+get the data. we will use save() method.
+
+
+remove or comment out the log of token 
+and do return token 
+
+run 
+
+then it will show confirm password is required
+
+
+then we will remove emoplyee.pre mein console wala part
+
+
+in this we will also has our confirm password like 
+above password 
+
+then run 
+will show 
+{}
+
+this will show this data
+
+server connected at 3000
+connection successful
+the success part{
+  firstname: 'oooo',
+  lastname: 'oooo',
+  email: 'oooo@gmail.com',
+  gender: 'male',
+  phone: '2322312311',
+  age: '23',
+  password: 'phpa',
+  confirmpassword: 'phpa',
+  _id: new ObjectId("6231f14dec188e607f1e4915"),
+  tokens: []
+}
+new ObjectId("6231f14dec188e607f1e4915")
+
+
+
+go to mongo go to tokens
+then click on objects it will show 
+tokens id 
+it is created each time 
+
+
+in app.js 
+console.log("the page part"+registered);
+
+yeh add kiya below registerd .save() hai jisme
+
+uske niche log krna hai
+
+
+
+ab krenge registration tou direct switch krega home pe
+
+
+server connected at 3000
+connection successful
+the success part{
+  firstname: 'rahul',
+  lastname: 'rahul',
+  email: 'rahul@gmail.com',
+  gender: 'male',
+  phone: '2362362320',
+  age: '21',
+  password: 'rahul',
+  confirmpassword: 'rahul',
+  _id: new ObjectId("6231f453ccb93c83eb456075"),
+  tokens: []
+}
+new ObjectId("6231f453ccb93c83eb456075")
+the token parteyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMxZjQ1M2NjYjkzYzgzZWI0NTYwNzUiLCJpYXQiOjE2NDc0NDA5Nzl9.GBwrnjhNaI_Ew_MYmY_xQCOLqgpbFUL_rJUPQpKQ-JE
+the page part{
+  firstname: 'rahul',
+  lastname: 'rahul',
+  email: 'rahul@gmail.com',
+  gender: 'male',
+  phone: '2362362320',
+  age: '21',
+  password: '$2a$10$fwBUnIw0yXzBtypOd247Yux0QCkhZm046r21FkBcJEle//tZ5lJdi',
+  confirmpassword: '$2a$10$vq6NPSdcuw8piXCwdxMubuwSYNExH6Mb/Rnjdcki8adYRA76K2Eiq',
+  _id: new ObjectId("6231f453ccb93c83eb456075"),
+  tokens: [
+    {
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMxZjQ1M2NjYjkzYzgzZWI0NTYwNzUiLCJpYXQiOjE2NDc0NDA5Nzl9.GBwrnjhNaI_Ew_MYmY_xQCOLqgpbFUL_rJUPQpKQ-JE',       
+      _id: new ObjectId("6231f453ccb93c83eb456076")
+    }
+  ],
+  __v: 0
+}
+
+
+aur yeh console pe aayega
+
+
+
+
+
+// ****** login auth ///////////
+
+
+
+const token = await registerEmployee.generateAuthToken();
+            console.log("the token part" + token);
+
+
+copy this token function from the app.js then 
+paste this in the login method below the compare thing
+
+
+uske upr user joh register krega uska data mujhe usermail. mein milega
+then have to check the password so we wrote password 
+
+it writes true or false 
+then i am writting a middleware.
+
+same above function
+
+then im generating token
+
+
+
+register ka instance login mein usermail hai 
+so we will paste this usermail in the place of registerEmployee
+
+
+
+after login this will generate 
+
+server connected at 3000
+connection successful
+new ObjectId("6232028a3aab39d052f014d7")
+the token parteyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMyMDI4YTNhYWIzOWQwNTJmMDE0ZDciLCJpYXQiOjE2NDc0NDQ2ODV9.R4qof7TIHSgfIfWGG1kSQqZ0BmKOVRY0QoBmYcVcC_4
+
+
+
+
+
+
+
+
+
+///// secrets & configs dotenv //////
+
+if humne yeh github pe upload kiya then 
+secret key will public ,, everyone can see this
+
+so secure kaise rakhe ?
+
+install dotenv
+
+chhota chhota data like portname, secret key
+mujhe private rakhana hai 
+then i will use dotenv package.
+
+
+require('dotenv').config();
+
+this has to be on top
+
+create dotenv file.
+
+its a simple text file.
+
+key=value = data in env 
+
+we will copy secret key from regsiter.js 
+and paste in dotenv file
+
+SECRET_KEY = keyyy...(secretkey)
+
+and then in register.js 
+we will put SECRET_KEY in place of secret 
+key in employeeSchema jwt.sign( 2nd parameter)
+
+
+
+console the process.env.SECRET_KEY
+
+if upload on git so there are chances of getting our secret key to anyone
+so how to hide this.
+
+
+git init 
+git status
+make file
+type nul > .gitignore
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+abc = amir baddruddin chaugule
+abc@slashrtc.com

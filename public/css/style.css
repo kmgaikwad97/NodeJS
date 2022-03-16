@@ -1,0 +1,9 @@
+h1{
+    color: red;
+}
+form{
+    padding: 50px;
+}
+.create{
+    cursor: pointer;
+}
